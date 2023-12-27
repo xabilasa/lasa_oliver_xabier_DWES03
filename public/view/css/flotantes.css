@@ -1,0 +1,59 @@
+[data-tooltip]{ 
+    position:relative; 
+    border-bottom: 1px dotted rgb(218, 223, 224);
+    cursor:pointer;
+    }
+    [data-tooltip]::before {
+    content : attr(data-tooltip);
+    background-color:rgba(0,0,0,.75);
+    color:white;
+    -webkit-font-smoothing: antialiased;
+    width:300px;
+    padding:10px;
+    height:auto;
+    border-radius:3px;
+    display:none;
+    position:absolute;
+    bottom:25px;
+    left:calc(100% - 75%);
+    pointer-events: none;
+    z-index:99;
+     }
+    [data-tooltip]::after{
+    content:"";
+    height:1px;
+    width:1px;
+    border:10px solid transparent;
+    border-top-color:rgba(0,0,0,.75);
+    position:absolute;
+    bottom:4px;
+    left:50%;
+    display: none;
+    }
+    [data-tooltip]:hover::before,
+    [data-tooltip]:hover::after
+    { display:block;} 
+
+.animado [data-tooltip]::before {
+    display:block;
+    opacity:0;
+    pointer-events: none;
+    }
+    .animado [data-tooltip]::after{
+    opacity:0;
+    pointer-events: none;
+    }
+
+/* define la animación */ 
+.animado [data-tooltip]:hover::before,
+.animado [data-tooltip]:hover::after {
+    animation-name: toolTip;
+    animation-duration: 1s;
+    opacity:1;
+}
+
+/* define las fotogramas de la animación*/
+@keyframes toolTip {
+  0%   {opacity:0;}
+  100% {opacity:1;}
+  }
